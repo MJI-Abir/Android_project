@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "478676457680",
-    "firebase_url": "https://newagent-pdkqhu.firebaseio.com",
-    "project_id": "newagent-pdkqhu",
-    "storage_bucket": "newagent-pdkqhu.appspot.com"
+    "project_number": "877513312265",
+    "project_id": "bookpal-88125",
+    "storage_bucket": "bookpal-88125.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:478676457680:android:caafe7965a7f9e51c2a6d5",
+        "mobilesdk_app_id": "1:877513312265:android:c59598c80db855149590d8",
         "android_client_info": {
           "package_name": "com.app.hotel"
         }
       },
       "oauth_client": [
         {
-          "client_id": "478676457680-u07d229rf5hgddaphft928a67kr382b8.apps.googleusercontent.com",
+          "client_id": "877513312265-glk2tc79fq356i5c87q6p668uvfbml15.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCySr1vmdusjT0Xxks9AJ_82IBbl8LLVME"
+          "current_key": "AIzaSyDDNbXuwtxJyiPDKlpnPBKNKsuMe1m6cuU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "478676457680-u07d229rf5hgddaphft928a67kr382b8.apps.googleusercontent.com",
+              "client_id": "877513312265-glk2tc79fq356i5c87q6p668uvfbml15.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
