@@ -3,6 +3,7 @@ package com.app.hotel.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -18,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private ProgressBar loginProgressBar;
+//    private ProgressBar loginProgressBar;
     private EditText etEmailInLoginLayout, etPasswordInLoginLayout;
     FirebaseAuth mAuth;
 
@@ -27,10 +28,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        getSupportActionBar().setTitle("Sign in");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         etEmailInLoginLayout = findViewById(R.id.etEmailInLoginLayout);
         etPasswordInLoginLayout = findViewById(R.id.etPasswordInLoginLayout);
-
-        loginProgressBar = findViewById((R.id.loginProgressBar));
 
         Button button_create_account = findViewById(R.id.button_create_account);
         button_create_account.setOnClickListener(this);
@@ -45,9 +47,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if(mAuth.getCurrentUser() != null)
         {
+            finish();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
-            finish();
         }
     }
 
@@ -57,11 +59,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.button_login:
                 signIn();
-                finish();
                 break;
             case R.id.button_create_account:
                 startActivity(new Intent(this, RegisterActivity.class));
-//                finish();
                 break;
             case R.id.forgotPasswordButton:
                 startActivity(new Intent(this, ResetPasswordActivity.class));
@@ -92,7 +92,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        loginProgressBar.setVisibility(View.VISIBLE);
+        final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
+        pd.setMessage("Please wait...");
+        pd.show();
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
@@ -104,7 +106,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             startActivity(new Intent(this, MainActivity.class));
                         }
                         else{
-                            Toast.makeText(LoginActivity.this, "Please verify your account",Toast.LENGTH_SHORT).show();
+                            checkIfEmailVerified();
                         }
 
                     }
@@ -113,8 +115,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 "Oops! These credentials are not connected to an account",
                                 Toast.LENGTH_LONG).show();
                     }
-                    loginProgressBar.setVisibility(View.GONE);
+                    pd.dismiss();
                 });
 
+    }
+
+    private void checkIfEmailVerified() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user.isEmailVerified())
+        {
+            // user is verified, so you can finish this activity or send user to activity which you want.
+            finish();
+            Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            // email is not verified, so just prompt the message to the user and restart this activity.
+            // NOTE: don't forget to log out the user.
+            Toast.makeText(LoginActivity.this, "Email not verified", Toast.LENGTH_SHORT).show();
+            FirebaseAuth.getInstance().signOut();
+
+            //restart this activity
+            overridePendingTransition(0, 0);
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(getIntent());
+
+        }
     }
 }

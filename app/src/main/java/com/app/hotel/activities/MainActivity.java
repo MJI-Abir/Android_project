@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.favourites:
                     replaceFragment(new FavouritesFragment());
+                    break;
             }
             return true;
         });

@@ -14,29 +14,12 @@
         android:layout_gravity="center_horizontal"
         android:orientation="vertical">
 
-        <FrameLayout
+        <ImageView
+            android:id="@+id/hotelimage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-            <ImageView
-                android:id="@+id/hotelimage"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:background="@color/black"
-                app:srcCompat="@drawable/logo_no_background" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/layout_margin"
-                android:fontFamily="serif"
-                android:text="@string/registerBanner"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </FrameLayout>
+            android:layout_height="300dp"
+            android:background="@color/black"
+            app:srcCompat="@drawable/logo_no_background" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -174,14 +157,6 @@
                 android:text="@string/signup"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity = "center"
-                android:visibility="gone"
-                style="@android:style/Animation" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

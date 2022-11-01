@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.app.hotel.R;
@@ -22,6 +23,7 @@ import com.app.hotel.activities.LoginActivity;
 import com.app.hotel.activities.MapsActivity;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
 
@@ -51,6 +53,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         super.onViewCreated(view, savedInstanceState);
 
+        Objects.requireNonNull(((AppCompatActivity)getActivity()).getSupportActionBar()).hide();
+
 
         datepicker = view.findViewById(R.id.datepicker);
         datepicker.setOnClickListener(this);
@@ -75,21 +79,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
             case R.id.guest:
                 startActivity(new Intent(getContext(), GuestActivity.class));
-                getActivity().finish();
                 break;
 
             case R.id.search:
                 startActivity(new Intent(getContext(), MapsActivity.class));
-                //   getActivity().finish();
                 break;
 
             case R.id.datepicker:
-//                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
-//                        android.R.style.Theme_Holo_Light_Dialog_MinWidth, setListener, year, month, day);
-//                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                datePickerDialog.show();
-//              //  getActivity().finish();
-//                break;
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (view1, year, month, day) -> {
                     month = month + 1;
                     String date = day + "/" + month + "/" + year;
@@ -98,10 +94,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
                 datePickerDialog.show();
                 break;
-<<<<<<< HEAD
-=======
-
->>>>>>> 0d1d1292c1010d7d2c87249f0b01fa096d4f674f
         }
     }
 

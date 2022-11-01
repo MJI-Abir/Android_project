@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.app.hotel">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -43,6 +44,9 @@
         <activity
             android:name=".activities.GuestActivity"
             android:exported="false" />
+        <activity android:name=".activities.ResetPasswordActivity"
+            android:exported="false"/>
+
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true">

@@ -8,30 +8,12 @@
     tools:context=".activities.LoginActivity">
 
 
-
-    <FrameLayout
+    <ImageView
+        android:id="@+id/hotelimage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <ImageView
-            android:id="@+id/hotelimage"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@color/black"
-            app:srcCompat="@drawable/logo_no_background" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_margin"
-            android:fontFamily="serif"
-            android:text="@string/sign_in"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </FrameLayout>
+        android:layout_height="300dp"
+        android:background="@color/black"
+        app:srcCompat="@drawable/logo_no_background" />
 
 
     <LinearLayout
@@ -124,13 +106,13 @@
                 android:textColor="@android:color/black" />
         </LinearLayout>
 
-        <ProgressBar
-                android:id="@+id/loginProgressBar"
-                style="@android:style/Animation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="gone" />
+<!--        <ProgressBar-->
+<!--                android:id="@+id/loginProgressBar"-->
+<!--                style="@android:style/Animation"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:visibility="gone" />-->
 
         </LinearLayout>
 

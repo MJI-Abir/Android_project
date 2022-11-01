@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.ProfileFragment"
-    android:background="@color/appTheme">
+    android:background="@color/white">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,10 +18,13 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:src="@tools:sample/avatars" />
+                android:id="@+id/imageEdit"
+                android:layout_width="176dp"
+                android:layout_height="143dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="50dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/man" />
 
             <TextView
                 android:id="@+id/nameTextView"
@@ -46,6 +49,38 @@
                 android:layout_gravity="center"
                 android:text=""
                 android:textSize="24sp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3">
+
+                <ImageView
+                    android:id="@+id/aboutBtn"
+                    android:layout_width="55dp"
+                    android:layout_height="44dp"
+                    app:srcCompat="@drawable/about"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:id="@+id/contactBtn"
+                    android:layout_width="63dp"
+                    android:layout_height="47dp"
+                    app:srcCompat="@drawable/contact"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:id="@+id/shareBtn"
+                    android:layout_width="56dp"
+                    android:layout_height="42dp"
+                    app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/orderedProduct"
+                    app:srcCompat="@drawable/sharing"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/signOut"

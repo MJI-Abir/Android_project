@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,8 +38,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private EditText editTextfName,editTextlname,editTextMobile,editTextemail,editTextPassword,
         editTextConfirmPassword;
-    private Button buttonSignUp, loginButtonFromRegisterLayout;
-    private ProgressBar progressBar;
     private FirebaseFirestore fstore;
     private String userID;
 
@@ -47,6 +46,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        getSupportActionBar().setTitle("Sign up");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -58,12 +60,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword);
 
-        buttonSignUp = findViewById(R.id.buttonSignUp);
+        Button buttonSignUp = findViewById(R.id.buttonSignUp);
         buttonSignUp.setOnClickListener(this);
 
-        progressBar = findViewById(R.id.progressBar);
-
-        loginButtonFromRegisterLayout = findViewById(R.id.loginButtonFromRegisterLayout);
+        Button loginButtonFromRegisterLayout = findViewById(R.id.loginButtonFromRegisterLayout);
         loginButtonFromRegisterLayout.setOnClickListener(this);
 
     }
@@ -139,7 +139,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
+        final ProgressDialog pd = new ProgressDialog(RegisterActivity.this);
+        pd.setMessage("Please wait...");
+        pd.show();
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
@@ -147,19 +149,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         FirebaseUser firebaseUser = mAuth.getCurrentUser();
                         assert firebaseUser != null;
 
-//                        firebaseUser.sendEmailVerification().addOnSuccessListener(unused ->
-//                                Toast.makeText(RegisterActivity.this, "Check email to verify your account", Toast.LENGTH_LONG).show())
-//                                .addOnFailureListener(e -> Log.d(TAG, e.getMessage()));
-
                         firebaseUser.sendEmailVerification().addOnCompleteListener(task1 -> {
                             if(task1.isSuccessful()){
-                                Toast.makeText(RegisterActivity.this, "Check email to verify your account", Toast.LENGTH_LONG).show();
 
+                                Toast.makeText(RegisterActivity.this, "Check email to verify your account", Toast.LENGTH_LONG).show();
                                 //                        redirect to login page
+                                FirebaseAuth.getInstance().signOut();
                                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                finish();
                             }
-                            else{
+                            else
+                            {
+                                // email not sent, so display message and restart the activity or do whatever you wish to do
                                 Toast.makeText(RegisterActivity.this, task1.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                //restart this activity
+                                overridePendingTransition(0, 0);
+                                finish();
+                                overridePendingTransition(0, 0);
+                                startActivity(getIntent());
                             }
                         });
 
@@ -181,7 +188,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     } else {
                         Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
-                    progressBar.setVisibility(View.GONE);
+                    pd.dismiss();
 
                 });
     }
