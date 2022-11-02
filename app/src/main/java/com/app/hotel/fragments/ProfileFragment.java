@@ -19,17 +19,18 @@ import android.widget.Toast;
 import com.app.hotel.R;
 import com.app.hotel.activities.LoginActivity;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Objects;
-
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private TextView nameTextView, numberTextView, emailTextView;
+    ShimmerFrameLayout shimmerFrameLayout;
+    private View layoutProfile;
 
     public ProfileFragment() {
 
@@ -49,6 +50,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
+
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -56,15 +60,23 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Profile");
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+
+
+
         FirebaseFirestore fstore = FirebaseFirestore.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         nameTextView = view.findViewById(R.id.nameTextView);
         numberTextView = view.findViewById(R.id.numberTextView);
         emailTextView = view.findViewById(R.id.emailTextView);
+        layoutProfile = view.findViewById(R.id.layoutProfile);
 
         Button signOut = view.findViewById(R.id.signOut);
         signOut.setOnClickListener(this);
+
+        shimmerFrameLayout = view.findViewById(R.id.shimmer);
+        shimmerFrameLayout.startShimmer();
 
         findUser();
 
@@ -75,6 +87,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(userID);
         documentReference.get().addOnSuccessListener(documentSnapshot -> {
             if(documentSnapshot.exists()){
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                layoutProfile.setVisibility(View.VISIBLE);
+
                 nameTextView.setText(new StringBuilder().append(documentSnapshot.getString("First_Name"))
                         .append("  ").append(documentSnapshot.getString("Last_Name")).toString());
                 numberTextView.setText(documentSnapshot.getString("phone"));

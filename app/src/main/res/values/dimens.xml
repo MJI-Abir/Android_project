@@ -6,4 +6,5 @@
     <dimen name="layout_margin">20dp</dimen>
     <dimen name="textView_textSize">20sp</dimen>
     <dimen name="drawablePadding">12dp</dimen>
+    <dimen name="view_margin">8dp</dimen>
 </resources>
