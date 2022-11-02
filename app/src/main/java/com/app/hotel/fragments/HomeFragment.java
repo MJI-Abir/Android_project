@@ -3,13 +3,12 @@ package com.app.hotel.fragments;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,9 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.app.hotel.R;
-import com.app.hotel.activities.GuestActivity;
-import com.app.hotel.activities.LoginActivity;
 import com.app.hotel.activities.MapsActivity;
+import com.app.hotel.activities.NetworkChangeListener;
 
 import java.util.Calendar;
 import java.util.Objects;
@@ -30,6 +28,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private TextView datepicker;
     private int year, month, day;
     private DatePickerDialog.OnDateSetListener setListener;
+    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     public HomeFragment() {
 
@@ -70,6 +69,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         month = calender.get(Calendar.MONTH);
         day = calender.get(Calendar.DAY_OF_MONTH);
 
+//        @Override
+//        public void onStart() {
+//
+//            IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+//            registerReceiver(networkChangeListener,intentFilter);
+//            super.onStart();
+//        }
+//
+//        public void onStop() {
+//            unregisterReceiver(networkChangeListener);
+//            super.onStop();
+//        }
+
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -77,14 +89,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()) {
 
+            //------------------------------select guests------------------------//
             case R.id.guest:
-                startActivity(new Intent(getContext(), GuestActivity.class));
+                GuestBottomSheetFragment bottomSheetFragment = new GuestBottomSheetFragment();
+                bottomSheetFragment.show(getParentFragmentManager(),bottomSheetFragment.getTag());
                 break;
 
+                //--------------------------------map search----------------------//
             case R.id.search:
                 startActivity(new Intent(getContext(), MapsActivity.class));
                 break;
 
+                //--------------------------------datepicker dialog -----------------------//
             case R.id.datepicker:
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (view1, year, month, day) -> {
                     month = month + 1;

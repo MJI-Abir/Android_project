@@ -66,10 +66,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         Button signOut = view.findViewById(R.id.signOut);
         signOut.setOnClickListener(this);
 
-        String userID = mAuth.getCurrentUser().getUid();
+        findUser();
 
-        DocumentReference documentReference = fstore.collection("users").document(userID);
+    }
 
+    private void findUser() {
+        String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(userID);
         documentReference.get().addOnSuccessListener(documentSnapshot -> {
             if(documentSnapshot.exists()){
                 nameTextView.setText(new StringBuilder().append(documentSnapshot.getString("First_Name"))
@@ -81,7 +84,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getContext(),"Data not found",Toast.LENGTH_LONG).show();
             }
         }).addOnFailureListener(e -> Toast.makeText(getContext(),e.toString(),Toast.LENGTH_LONG).show());
-
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -98,4 +100,5 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         }
 
     }
+
 }

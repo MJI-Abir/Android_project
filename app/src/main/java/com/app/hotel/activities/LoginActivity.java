@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.app.hotel.R;
+import com.app.hotel.fragments.ResetPassBottomSheetFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -64,7 +65,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(this, RegisterActivity.class));
                 break;
             case R.id.forgotPasswordButton:
-                startActivity(new Intent(this, ResetPasswordActivity.class));
+                ResetPassBottomSheetFragment resetPassBottomSheetFragment = new ResetPassBottomSheetFragment();
+                resetPassBottomSheetFragment.show(getSupportFragmentManager(),resetPassBottomSheetFragment.getTag());
                 break;
         }
     }

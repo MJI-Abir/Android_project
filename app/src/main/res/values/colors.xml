@@ -12,4 +12,5 @@
     <color name="darkRed">#8B0000</color>
     <color name="appTheme">#5F9DF7</color>
     <color name="colorDivider">#1D49E7</color>
+    <color name="shimmerColor">#9D9C9C</color>
 </resources>

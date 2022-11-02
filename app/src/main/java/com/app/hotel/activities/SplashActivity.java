@@ -8,12 +8,17 @@ import android.os.Handler;
 
 import com.app.hotel.R;
 
+import java.util.Objects;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
         Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
 
         new Handler().postDelayed(new Runnable() {

@@ -41,9 +41,6 @@
         <activity
             android:name=".activities.RegisterActivity"
             android:exported="false" />
-        <activity
-            android:name=".activities.GuestActivity"
-            android:exported="false" />
         <activity android:name=".activities.ResetPasswordActivity"
             android:exported="false"/>
 
