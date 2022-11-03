@@ -1,5 +1,7 @@
 package com.app.hotel.fragments;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +11,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +24,7 @@ import com.app.hotel.R;
 import com.app.hotel.activities.LoginActivity;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 
@@ -31,6 +36,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private TextView nameTextView, numberTextView, emailTextView;
     ShimmerFrameLayout shimmerFrameLayout;
     private View layoutProfile;
+    private FloatingActionButton addPhotoButton;
+    private final int GALLERY_REQ_CODE = 1000;
+    private ImageView imgGallery;
 
     public ProfileFragment() {
 
@@ -71,6 +79,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         numberTextView = view.findViewById(R.id.numberTextView);
         emailTextView = view.findViewById(R.id.emailTextView);
         layoutProfile = view.findViewById(R.id.layoutProfile);
+
+        addPhotoButton = view.findViewById(R.id.addPhotoButton);
+        addPhotoButton.setOnClickListener(this);
+
+        imgGallery = view.findViewById(R.id.imgGallery);
 
         Button signOut = view.findViewById(R.id.signOut);
         signOut.setOnClickListener(this);
@@ -113,8 +126,21 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getContext(), LoginActivity.class));
                 getActivity().finish();
                 break;
+            case R.id.addPhotoButton:
+                Intent iGallery = new Intent(Intent.ACTION_PICK);
+                iGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(iGallery,GALLERY_REQ_CODE);
         }
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            if(resultCode == GALLERY_REQ_CODE){
+                imgGallery.setImageURI(data.getData());
+            }
+        }
+    }
 }

@@ -13,4 +13,5 @@
     <color name="appTheme">#5F9DF7</color>
     <color name="colorDivider">#1D49E7</color>
     <color name="shimmerColor">#9D9C9C</color>
+    <color name="scarletRed">#FF2400</color>
 </resources>

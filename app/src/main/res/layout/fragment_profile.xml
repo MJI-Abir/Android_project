@@ -69,10 +69,12 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/signOut"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/layout_margin"
                 android:layout_marginBottom="@dimen/layout_margin"
+                android:layout_marginEnd="@dimen/layout_margin"
+                android:layout_marginStart="@dimen/layout_margin"
                 android:text="@string/sign_out"
                 android:layout_gravity="center"
                 android:textColor="@color/white"

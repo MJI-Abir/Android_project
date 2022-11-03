@@ -5,6 +5,48 @@
     android:id="@+id/splash"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/logo_no_background"
-    android:backgroundTint="@color/darkRed"
-    tools:context=".activities.SplashActivity"/>
+    android:background="@color/white"
+    tools:context=".activities.SplashActivity"
+    android:padding="@dimen/layout_margin">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/logo_no_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bookpaltv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BookPal"
+        android:textSize="80sp"
+        android:fontFamily="@font/remachine_script"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+    <TextView
+        android:id="@+id/slogan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Book your hotels and more"
+        android:textSize="24sp"
+        android:layout_marginTop="-50dp"
+        android:fontFamily="@font/roboto_condensed_light"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookpaltv" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
