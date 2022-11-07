@@ -1,122 +1,137 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:clipToPadding="false"
+    android:fillViewport="true"
+    android:scrollbarStyle="outsideOverlay"
     tools:context=".activities.LoginActivity">
 
-
-    <ImageView
-        android:id="@+id/hotelimage"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@color/black"
-        app:srcCompat="@drawable/logo_no_background" />
-
-
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".activities.LoginActivity"
+        android:padding="@dimen/layout_margin"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/hotelimage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/logo_no_background"
+            android:transitionName="logo_img_transition"/>
+
+        <TextView
+            android:id="@+id/logo_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello there, Welcome Back"
+            android:textSize="30sp"
+            android:transitionName="logo_text_transition"
+            android:fontFamily="@font/bungee"
+            android:textColor="#000"/>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/input_bg"
             android:backgroundTint="@color/white"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/etEmailInLoginLayout"
-                style="@style/FirebaseUI.TextInputEditText.EmailField"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="20dp"
                 android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:minHeight="48dp"
-                android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
-                android:drawableStart="@drawable/custom_email_icon"
-                android:drawablePadding="@dimen/drawablePadding"
-                android:paddingStart="@dimen/drawablePadding"
-                android:paddingEnd="@dimen/drawablePadding"
-                android:background="@drawable/custom_edit_text"
-                 />
+                style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox">
 
-            <EditText
-                android:id="@+id/etPasswordInLoginLayout"
-                style="@style/FirebaseUI.TextInputEditText.PasswordField"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmailInLoginLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@android:color/black"
+                    android:drawableStart="@drawable/custom_email_icon"
+                    android:drawablePadding="@dimen/drawablePadding"
+                    android:paddingStart="@dimen/drawablePadding"
+                    android:paddingEnd="@dimen/drawablePadding"
+                    android:background="@drawable/custom_edit_text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="@dimen/drawablePadding"
-                android:paddingEnd="@dimen/drawablePadding"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/black"
                 android:hint="@string/password"
-                android:inputType="numberPassword"
-                android:minHeight="48dp"
-                android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
-                android:drawableStart="@drawable/custom_lock_icon"
-                android:drawablePadding="@dimen/drawablePadding"
-                android:background="@drawable/custom_edit_text"
-                 />
+                style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:text="@string/sign_in"
-            android:textColor="@color/white"
-            android:background="@drawable/btn_bg" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPasswordInLoginLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/custom_lock_icon"
+                    android:drawablePadding="@dimen/drawablePadding"
+                    android:paddingStart="@dimen/drawablePadding"
+                    android:paddingEnd="@dimen/drawablePadding"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@android:color/black"
+                    android:inputType="numberPassword"
+                    android:background="@drawable/custom_edit_text" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="2">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_create_account"
-                android:layout_width="0dp"
+                android:id="@+id/button_login"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:text="@string/create_an_account"
-                android:textColor="@android:color/black" />
+                android:text="@string/sign_in"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_bg"/>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/forgotPasswordButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:text="@string/forgot_password"
-                android:textColor="@android:color/black" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_create_account"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="@string/create_an_account"
+                    android:elevation="10dp"
+                    android:textColor="@android:color/black" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/forgotPasswordButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="@string/forgot_password"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
         </LinearLayout>
 
-<!--        <ProgressBar-->
-<!--                android:id="@+id/loginProgressBar"-->
-<!--                style="@android:style/Animation"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:visibility="gone" />-->
-
-        </LinearLayout>
-
-
-
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

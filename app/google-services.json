@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "877513312265",
-    "project_id": "bookpal-88125",
-    "storage_bucket": "bookpal-88125.appspot.com"
+    "project_number": "883083632164",
+    "project_id": "bookpalnew",
+    "storage_bucket": "bookpalnew.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:877513312265:android:c59598c80db855149590d8",
+        "mobilesdk_app_id": "1:883083632164:android:920866d38d7c1d30ea42b1",
         "android_client_info": {
           "package_name": "com.app.hotel"
         }
       },
       "oauth_client": [
         {
-          "client_id": "877513312265-glk2tc79fq356i5c87q6p668uvfbml15.apps.googleusercontent.com",
+          "client_id": "883083632164-3ggm5p2jdk68j1uh2vnmthn28kh1s5bp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDDNbXuwtxJyiPDKlpnPBKNKsuMe1m6cuU"
+          "current_key": "AIzaSyA77dyasXLU9qsjwhfvf8ydmdoLtTke0fg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "877513312265-glk2tc79fq356i5c87q6p668uvfbml15.apps.googleusercontent.com",
+              "client_id": "883083632164-3ggm5p2jdk68j1uh2vnmthn28kh1s5bp.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

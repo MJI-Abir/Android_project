@@ -3,9 +3,12 @@ package com.app.hotel.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Pair;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,7 +21,7 @@ import java.util.Objects;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static int SPLASH_DURATION;
+    private static int SPLASH_DURATION=3000;
     Animation topAnim,bottomAnim;
     ImageView image;
     TextView logo,slogan;
@@ -41,12 +44,15 @@ public class SplashActivity extends AppCompatActivity {
         logo.setAnimation(bottomAnim);
         slogan.setAnimation(bottomAnim);
 
-        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-
         new Handler().postDelayed(() -> {
-            startActivity(intent);
+            Intent intent=new Intent(SplashActivity.this,LoginActivity.class);
+            // Attach all the elements those you want to animate in design
+            Pair[]pairs=new Pair[2];pairs[0]=new Pair<View, String>(image,"logo_img_transition");pairs[1]=new Pair<View, String>(logo,"logo_text_transition");
+            //wrap the call in API level 21 or higher
+            ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this,pairs);
+            startActivity(intent,options.toBundle());
             finish();
-        },4000);
+        },SPLASH_DURATION);
     }
 
 }

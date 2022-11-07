@@ -32,12 +32,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
 
-    private EditText editTextfName,editTextlname,editTextMobile,editTextemail,editTextPassword,
-        editTextConfirmPassword;
+    private EditText editTextfName, editTextlname, editTextMobile, editTextemail, editTextPassword,
+            editTextConfirmPassword;
     private FirebaseFirestore fstore;
     private String userID;
 
@@ -46,9 +46,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
         getSupportActionBar().setTitle("Sign up");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -71,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.buttonSignUp:
                 createAccount();
                 return;
@@ -150,16 +149,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         assert firebaseUser != null;
 
                         firebaseUser.sendEmailVerification().addOnCompleteListener(task1 -> {
-                            if(task1.isSuccessful()){
+                            if (task1.isSuccessful()) {
 
                                 Toast.makeText(RegisterActivity.this, "Check email to verify your account", Toast.LENGTH_LONG).show();
                                 //                        redirect to login page
                                 FirebaseAuth.getInstance().signOut();
                                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                 finish();
-                            }
-                            else
-                            {
+                            } else {
                                 // email not sent, so display message and restart the activity or do whatever you wish to do
                                 Toast.makeText(RegisterActivity.this, task1.getException().getMessage(), Toast.LENGTH_LONG).show();
                                 //restart this activity
@@ -173,11 +170,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         userID = mAuth.getCurrentUser().getUid();
 
                         DocumentReference documentReference = fstore.collection("users").document(userID);
-                        Map<String,Object>user = new HashMap<>();
-                        user.put("First_Name",fname);
+                        Map<String, Object> user = new HashMap<>();
+                        user.put("First_Name", fname);
                         user.put("Last_Name", lname);
-                        user.put("email",email);
-                        user.put("phone",mobile);
+                        user.put("email", email);
+                        user.put("phone", mobile);
 
                         documentReference.set(user).addOnSuccessListener(unused ->
                                         Log.d(TAG, "user profile is created for " + userID))

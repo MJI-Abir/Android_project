@@ -1,34 +1,34 @@
 package com.app.hotel.fragments;
 
 import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 
 import com.app.hotel.R;
+import com.app.hotel.activities.HotelActivity;
 import com.app.hotel.activities.MapsActivity;
-import com.app.hotel.activities.NetworkChangeListener;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointForward;
+import com.google.android.material.datepicker.MaterialDatePicker;
 
-import java.util.Calendar;
 import java.util.Objects;
 
-public class HomeFragment extends Fragment implements View.OnClickListener{
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
-    private TextView datepicker;
-    private int year, month, day;
-    private DatePickerDialog.OnDateSetListener setListener;
-    NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+    public TextView dateRangePicker;
+    MaterialDatePicker materialDatePicker;
+    Button searchButton;
 
     public HomeFragment() {
 
@@ -52,35 +52,28 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         super.onViewCreated(view, savedInstanceState);
 
-        Objects.requireNonNull(((AppCompatActivity)getActivity()).getSupportActionBar()).hide();
+        Objects.requireNonNull(((AppCompatActivity) getActivity()).getSupportActionBar()).hide();
+
+        dateRangePicker = view.findViewById(R.id.dateRangePicker);
+        dateRangePicker.setOnClickListener(this);
+
+        searchButton = view.findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(this);
 
 
-        datepicker = view.findViewById(R.id.datepicker);
-        datepicker.setOnClickListener(this);
-
-        TextView guest = (TextView) view.findViewById(R.id.guest);
+        TextView guest = view.findViewById(R.id.guest);
         guest.setOnClickListener(this);
 
-        TextView search = (TextView) view.findViewById(R.id.search);
+        TextView search = view.findViewById(R.id.search);
         search.setOnClickListener(this);
 
-        Calendar calender = Calendar.getInstance();
-        year = calender.get(Calendar.YEAR);
-        month = calender.get(Calendar.MONTH);
-        day = calender.get(Calendar.DAY_OF_MONTH);
+        CalendarConstraints.Builder constraintsBuilder =
+                new CalendarConstraints.Builder()
+                        .setValidator(DateValidatorPointForward.now());
 
-//        @Override
-//        public void onStart() {
-//
-//            IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-//            registerReceiver(networkChangeListener,intentFilter);
-//            super.onStart();
-//        }
-//
-//        public void onStop() {
-//            unregisterReceiver(networkChangeListener);
-//            super.onStop();
-//        }
+        materialDatePicker = MaterialDatePicker.Builder.dateRangePicker().setCalendarConstraints(constraintsBuilder.build()).
+                setSelection(Pair.create(MaterialDatePicker.thisMonthInUtcMilliseconds(),
+                        MaterialDatePicker.todayInUtcMilliseconds())).build();
 
     }
 
@@ -92,23 +85,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             //------------------------------select guests------------------------//
             case R.id.guest:
                 GuestBottomSheetFragment bottomSheetFragment = new GuestBottomSheetFragment();
-                bottomSheetFragment.show(getParentFragmentManager(),bottomSheetFragment.getTag());
+                bottomSheetFragment.show(getParentFragmentManager(), bottomSheetFragment.getTag());
                 break;
 
-                //--------------------------------map search----------------------//
+            //--------------------------------map search----------------------//
             case R.id.search:
-                startActivity(new Intent(getContext(), MapsActivity.class));
+                startActivity(new Intent(getContext(),MapsActivity.class));
                 break;
 
-                //--------------------------------datepicker dialog -----------------------//
-            case R.id.datepicker:
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), (view1, year, month, day) -> {
-                    month = month + 1;
-                    String date = day + "/" + month + "/" + year;
-                    datepicker.setText(date);
-                }, year, month, day);
-
-                datePickerDialog.show();
+            //--------------------------------datepicker dialog -----------------------//
+            case R.id.dateRangePicker:
+                materialDatePicker.show(getParentFragmentManager(), "tag_picker");
+                materialDatePicker.addOnPositiveButtonClickListener(selection ->
+                        dateRangePicker.setText(materialDatePicker.getHeaderText()));
+                break;
+            case R.id.searchButton:
+                startActivity(new Intent(getContext(), HotelActivity.class));
                 break;
         }
     }

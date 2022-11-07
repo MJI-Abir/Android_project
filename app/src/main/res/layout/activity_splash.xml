@@ -17,7 +17,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:transitionName="logo_img_transition"/>
 
     <TextView
         android:id="@+id/bookpaltv"
@@ -32,12 +33,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        android:transitionName="logo_text_transition"/>
     <TextView
         android:id="@+id/slogan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Book your hotels and more"
+        android:text="@string/slogan"
         android:textSize="24sp"
         android:layout_marginTop="-50dp"
         android:fontFamily="@font/roboto_condensed_light"

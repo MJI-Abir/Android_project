@@ -15,12 +15,12 @@ import android.widget.TextView;
 import com.app.hotel.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class GuestBottomSheetFragment extends BottomSheetDialogFragment implements View.OnClickListener{
+public class GuestBottomSheetFragment extends BottomSheetDialogFragment implements View.OnClickListener {
 
-    TextView value1,value2,value3;
-    Button increment1,increment2,increment3,decrement1,decrement2,decrement3;
+    TextView value1, value2, value3;
+    Button increment1, increment2, increment3, decrement1, decrement2, decrement3;
     Button done;
-    int count = 0;
+    int count1 = 0, count2 = 0, count3 = 0;
 
     public GuestBottomSheetFragment() {
         // Required empty public constructor
@@ -43,16 +43,18 @@ public class GuestBottomSheetFragment extends BottomSheetDialogFragment implemen
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        HomeFragment homeFragment = new HomeFragment();
+
         value1 = view.findViewById(R.id.val1);
         value2 = view.findViewById(R.id.val2);
         value3 = view.findViewById(R.id.val3);
 
         increment1 = view.findViewById(R.id.inc1);
-        increment3=view.findViewById(R.id.inc3);
-        increment2=view.findViewById(R.id.inc2);
-        decrement1= view.findViewById(R.id.dec1);
-        decrement2= view.findViewById(R.id.dec2);
-        decrement3= view.findViewById(R.id.dec3);
+        increment3 = view.findViewById(R.id.inc3);
+        increment2 = view.findViewById(R.id.inc2);
+        decrement1 = view.findViewById(R.id.dec1);
+        decrement2 = view.findViewById(R.id.dec2);
+        decrement3 = view.findViewById(R.id.dec3);
 
         done = view.findViewById(R.id.apply);
 
@@ -81,40 +83,41 @@ public class GuestBottomSheetFragment extends BottomSheetDialogFragment implemen
     @Override
     public void onClick(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
+
+            case R.id.inc1:
+                count1++;
+                value1.setText("" + count1);
+                break;
+            case R.id.inc2:
+                count2++;
+                value2.setText("" + count2);
+                break;
+            case R.id.inc3:
+                count3++;
+                value3.setText("" + count3);
+                break;
+            case R.id.dec1:
+                if (count1 <= 0) {
+                    count1 = 0;
+                } else count1--;
+                value1.setText("" + count1);
+                break;
+            case R.id.dec2:
+                if (count2 <= 0) {
+                    count2 = 0;
+                } else count2--;
+                value2.setText("" + count2);
+                break;
+            case R.id.dec3:
+                if (count3 <= 0) {
+                    count3 = 0;
+                } else count3--;
+                value3.setText("" + count3);
+                break;
 
             case R.id.apply:
                 dismiss();
-                break;
-            case R.id.inc1:
-                count++;
-                value1.setText("" + count);
-                break;
-            case R.id.inc2:
-                count++;
-                value2.setText("" + count);
-                break;
-            case R.id.inc3:
-                count++;
-                value3.setText("" + count);
-                break;
-            case R.id.dec1:
-                if (count <= 0) {
-                    count = 0;
-                } else count--;
-                value1.setText("" + count);
-                break;
-            case R.id.dec2:
-                if (count <= 0) {
-                    count = 0;
-                } else count--;
-                value2.setText("" + count);
-                break;
-            case R.id.dec3:
-                if (count <= 0) {
-                    count = 0;
-                } else count--;
-                value3.setText("" + count);
                 break;
 
         }
