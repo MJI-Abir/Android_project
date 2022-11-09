@@ -1,7 +1,5 @@
 package com.app.hotel.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,8 +9,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.hotel.R;
 import com.app.hotel.fragments.ResetPassBottomSheetFragment;
@@ -134,8 +133,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         else
         {
-            // email is not verified, so just prompt the message to the user and restart this activity.
-            // NOTE: don't forget to log out the user.
+
             Toast.makeText(LoginActivity.this, "Email not verified", Toast.LENGTH_SHORT).show();
             FirebaseAuth.getInstance().signOut();
 

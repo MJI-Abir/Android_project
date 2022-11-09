@@ -45,7 +45,7 @@
         <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/activity_hotel.xml" value="0.25982905982905985" />
         <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/activity_hotel_details.xml" value="0.2" />
         <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/activity_login.xml" value="0.27350427350427353" />
-        <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/activity_main.xml" value="0.2484375" />
+        <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/activity_main2.xml" value="0.2484375" />
         <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/activity_maps.xml" value="0.33" />
         <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/activity_profile.xml" value="0.264" />
@@ -64,6 +64,7 @@
         <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/fragment_reset_pass_bottom_sheet.xml" value="0.25982905982905985" />
         <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/hotel.xml" value="0.22" />
         <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/hotel_cardview.xml" value="0.27350427350427353" />
+        <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/hotel_shimmer.xml" value="0.27350427350427353" />
         <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/item_hotel.xml" value="0.27350427350427353" />
         <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/layout_profile.xml" value="0.27350427350427353" />
         <entry key="..\:/bookPal/Android_project/app/src/main/res/layout/profile.xml" value="0.33" />

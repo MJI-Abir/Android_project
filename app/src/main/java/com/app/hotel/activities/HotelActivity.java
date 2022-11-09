@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.hotel.R;
 import com.app.hotel.adapters.HotelAdapter;
 import com.app.hotel.viewModels.Hotel;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,15 +33,15 @@ public class HotelActivity extends AppCompatActivity {
     private HotelAdapter mAdapter;
 
     private ProgressBar mProgressCircle;
-
+    ShimmerFrameLayout shimmerFrameLayout;
 
     FirebaseStorage mStorage;
-
 
     private ArrayList<Hotel> mUploads;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hotel);
 
@@ -51,7 +53,8 @@ public class HotelActivity extends AppCompatActivity {
 
         mStorage = FirebaseStorage.getInstance();
 
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
+        shimmerFrameLayout = findViewById(R.id.shimmerHotel);
+        shimmerFrameLayout.startShimmer();
 
         DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
@@ -61,11 +64,19 @@ public class HotelActivity extends AppCompatActivity {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Hotel upload = postSnapshot.getValue(Hotel.class);
                     mUploads.add(upload);
+
                 }
 
                 mAdapter = new HotelAdapter(HotelActivity.this, mUploads);
 
                 mRecyclerView.setAdapter(mAdapter);
+
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                mRecyclerView.setVisibility(View.VISIBLE);
+
+//                shimmerFrameLayout.stopShimmer();
+
 //                mProgressCircle.setVisibility(View.INVISIBLE);
             }
 
@@ -92,6 +103,8 @@ public class HotelActivity extends AppCompatActivity {
                 }
 
                 mAdapter.notifyDataSetChanged();
+
+
 
 //                mProgressCircle.setVisibility(View.INVISIBLE);
             }

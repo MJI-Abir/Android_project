@@ -2,15 +2,14 @@ package com.app.hotel.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.app.hotel.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -21,6 +20,7 @@ public class GuestBottomSheetFragment extends BottomSheetDialogFragment implemen
     Button increment1, increment2, increment3, decrement1, decrement2, decrement3;
     Button done;
     int count1 = 0, count2 = 0, count3 = 0;
+    private HomeFragment HomeFragment;
 
     public GuestBottomSheetFragment() {
         // Required empty public constructor
@@ -64,18 +64,13 @@ public class GuestBottomSheetFragment extends BottomSheetDialogFragment implemen
 
         increment2.setOnClickListener(this);
 
-
         increment3.setOnClickListener(this);
-
 
         decrement1.setOnClickListener(this);
 
-
         decrement2.setOnClickListener(this);
 
-
         decrement3.setOnClickListener(this);
-
 
     }
 
@@ -117,6 +112,17 @@ public class GuestBottomSheetFragment extends BottomSheetDialogFragment implemen
                 break;
 
             case R.id.apply:
+//                Intent intent = new Intent(getContext(), MainActivity.class);
+//                intent.putExtra("val1", str);
+//                startActivity(intent);
+
+                Bundle bundle = new Bundle();
+                String str = value1.getText().toString();
+                bundle.putString("val1", str);
+                HomeFragment homeFragment = new HomeFragment();
+                homeFragment.setArguments(bundle);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.flLayout,homeFragment).commit();
+//                getActivity().getSupportFragmentManager().beginTransaction().commit();
                 dismiss();
                 break;
 

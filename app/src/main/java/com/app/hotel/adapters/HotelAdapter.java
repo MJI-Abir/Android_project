@@ -9,7 +9,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,19 +19,20 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewHolder> implements Filterable {
     private final Context mContext;
     ArrayList<Hotel> hotels;
-    ArrayList<Hotel> hotelsFiltered;
+    ArrayList<Hotel> hotelsFull;
 
 //    private OnItemClickListener mListener;
 
     public HotelAdapter(Context context, ArrayList<Hotel> uploads) {
         mContext = context;
         hotels = uploads;
-        this.hotelsFiltered = new ArrayList<>(hotels);
+        this.hotelsFull = new ArrayList<>(hotels);
     }
 
     @Override
@@ -44,7 +44,6 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewHol
     @Override
     public void onBindViewHolder(HotelViewHolder holder, int position) {
         Hotel uploadCurrent = hotels.get(position);
-
         holder.hotelName.setText(uploadCurrent.getName());
         holder.hotelLocation.setText(uploadCurrent.getLocation());
         holder.hotelPrice.setText("BDT " + uploadCurrent.getPrice() + "/DAY");
@@ -54,14 +53,8 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewHol
                 .centerCrop()
                 .into(holder.hotelImage);
 
-        holder.itemView.setOnClickListener(v -> {
-
-            Toast.makeText(mContext, holder.hotelName.getText().toString(), Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(mContext, HotelDetailsActivity.class);
-//                intent.putExtra("name")
-
-            mContext.startActivity(intent);
-        });
+        holder.itemView.setOnClickListener(v ->
+                mContext.startActivity(new Intent(mContext,HotelDetailsActivity.class)));
     }
 
     @Override
@@ -74,16 +67,16 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewHol
         return hotelFilter;
     }
 
-    private final Filter hotelFilter = new Filter() {
+    private Filter hotelFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
-            ArrayList<Hotel>filteredHotelList = new ArrayList<>();
+            List<Hotel> filteredHotelList = new ArrayList<>();
             if(charSequence == null || charSequence.length() == 0){
-                filteredHotelList.addAll(hotels);
+                filteredHotelList.addAll(hotelsFull);
             }
             else {
                 String filterPattern = charSequence.toString().toLowerCase().trim();
-                for(Hotel hotel : hotels){
+                for(Hotel hotel : hotelsFull){
                     if(hotel.getName().toLowerCase().contains(filterPattern)){
                         filteredHotelList.add(hotel);
                     }
@@ -99,8 +92,8 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewHol
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
 
-            hotelsFiltered.clear();
-            hotelsFiltered.addAll((ArrayList)filterResults.values);
+            hotels.clear();
+            hotels.addAll((ArrayList)filterResults.values);
             notifyDataSetChanged();
 
         }

@@ -26,7 +26,7 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
-    public TextView dateRangePicker;
+    public TextView dateRangePicker, guest;
     MaterialDatePicker materialDatePicker;
     Button searchButton;
 
@@ -60,9 +60,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         searchButton = view.findViewById(R.id.searchButton);
         searchButton.setOnClickListener(this);
 
-
-        TextView guest = view.findViewById(R.id.guest);
+        guest = view.findViewById(R.id.guest);
         guest.setOnClickListener(this);
+
+
 
         TextView search = view.findViewById(R.id.search);
         search.setOnClickListener(this);
@@ -84,8 +85,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
             //------------------------------select guests------------------------//
             case R.id.guest:
+
+
+
                 GuestBottomSheetFragment bottomSheetFragment = new GuestBottomSheetFragment();
                 bottomSheetFragment.show(getParentFragmentManager(), bottomSheetFragment.getTag());
+
+                Bundle bundle = new Bundle();
+                String str = bundle.getString("val1");
+                guest.setText(str);
+//
+//                Intent intent = getActivity().getIntent();
+//                String str = intent.getStringExtra("val1");
+//                guest.setText(str);
+////                Bundle bundle = getActivity().getIntent().getExtras();
+////                String str = bundle.getString("message");
+////                guest.setText(str);
                 break;
 
             //--------------------------------map search----------------------//

@@ -41,14 +41,15 @@
         android:layout_height="wrap_content"
         android:text="@string/slogan"
         android:textSize="24sp"
-        android:layout_marginTop="-50dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/roboto_condensed_light"
         android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookpaltv" />
+        app:layout_constraintTop_toBottomOf="@+id/bookpaltv"
+        android:transitionName="slogan_text_transition"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

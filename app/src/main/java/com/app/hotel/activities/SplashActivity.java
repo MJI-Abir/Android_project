@@ -1,8 +1,5 @@
 package com.app.hotel.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +11,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.hotel.R;
 
@@ -47,7 +46,9 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             Intent intent=new Intent(SplashActivity.this,LoginActivity.class);
             // Attach all the elements those you want to animate in design
-            Pair[]pairs=new Pair[2];pairs[0]=new Pair<View, String>(image,"logo_img_transition");pairs[1]=new Pair<View, String>(logo,"logo_text_transition");
+            Pair[]pairs=new Pair[3];pairs[0]=new Pair<View, String>(image,"logo_img_transition");
+            pairs[1]=new Pair<View, String>(logo,"logo_text_transition");
+            pairs[2] = new Pair<View, String>(slogan, "slogan_text_transition");
             //wrap the call in API level 21 or higher
             ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this,pairs);
             startActivity(intent,options.toBundle());

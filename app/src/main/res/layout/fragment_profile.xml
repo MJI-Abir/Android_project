@@ -75,7 +75,7 @@
                 android:layout_marginBottom="@dimen/layout_margin"
                 android:layout_marginEnd="@dimen/layout_margin"
                 android:layout_marginStart="@dimen/layout_margin"
-                android:text="@string/switch_as_host"
+                android:text="@string/switch_to_host"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:background="@drawable/btn_bg" />

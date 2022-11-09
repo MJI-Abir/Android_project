@@ -15,19 +15,19 @@
             android:padding="20dp">
 
             <ImageView
-                android:id="@+id/profile_image"
+                android:id="@+id/imgGallery"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/man" />
 
             <TextView
-                android:id="@+id/fullname_field"
+                android:id="@+id/nameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
-                android:layout_toEndOf="@+id/profile_image"
+                android:layout_toEndOf="@+id/imgGallery"
                 android:fontFamily="@font/bungee"
                 android:includeFontPadding="false"
                 android:text="Jawad Abir"
@@ -35,15 +35,27 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/username_field"
+                android:id="@+id/emailTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/fullname_field"
+                android:layout_below="@id/nameTextView"
                 android:layout_marginStart="10dp"
-                android:layout_toEndOf="@+id/profile_image"
+                android:layout_toEndOf="@+id/imgGallery"
+                android:includeFontPadding="false"
+                android:text="mjiabir12007@gmail.com"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/numberTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/emailTextView"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/imgGallery"
                 android:includeFontPadding="false"
                 android:text="01971866266"
                 android:textSize="14sp" />
+
         </RelativeLayout>
 
         <LinearLayout

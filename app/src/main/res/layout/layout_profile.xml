@@ -1,71 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layoutProfile"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_profile"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-
-    <ImageView
-        android:id="@+id/imgGallery"
-        android:layout_width="176dp"
-        android:layout_height="143dp"
-        android:layout_marginTop="@dimen/layout_margin"
-        android:src="@drawable/man"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addPhotoButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:background="@color/darkRed"
-        android:src="@drawable/ic_baseline_add_a_photo_24"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toBottomOf="@+id/imgGallery"
-        app:layout_constraintEnd_toEndOf="@+id/imgGallery" />
+        android:padding="20dp">
 
-    <TextView
-        android:id="@+id/nameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/view_margin"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgGallery" />
+        <ImageView
+            android:id="@+id/imgGallery"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/man" />
 
-    <TextView
-        android:id="@+id/numberTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/view_margin"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nameTextView" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addPhotoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgGallery"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="-40dp"
+            android:layout_marginStart="-40dp"
+            android:layout_toRightOf="@+id/imgGallery"
+            android:background="@color/darkRed"
+            android:src="@drawable/ic_baseline_add_a_photo_24"
+            app:fabSize="mini" />
 
-    <TextView
-        android:id="@+id/emailTextView"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="100dp"
+            android:layout_toEndOf="@+id/imgGallery"
+            android:fontFamily="@font/bungee"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textColor="#000"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/emailTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameTextView"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/imgGallery"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/numberTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emailTextView"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/imgGallery"
+            android:includeFontPadding="false"
+            android:text=""
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/view_margin"
-        android:text=""
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/numberTextView" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginTop="-100dp"
+        android:layout_width="match_parent"
+        android:padding="20dp">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="125dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            cardBackgroundColor="#fece2f"
+            cardElevation="10dp">
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:padding="5dp">
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:src="@drawable/ic_baseline_payments_24" />
+                <TextView
+                    android:fontFamily="@font/bungee"
+                    android:id="@+id/payment_label"
+                    android:includeFontPadding="false"
+                    android:layout_centerInParent="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="$123"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/payment_desc"
+                    android:includeFontPadding="false"
+                    android:layout_below="@id/payment_label"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Balance"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="125dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            cardBackgroundColor="#fece2f"
+            cardElevation="10dp">
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:padding="5dp">
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:src="@drawable/ic_baseline_book_online_24" />
+                <TextView
+                    android:fontFamily="@font/bungee"
+                    android:id="@+id/booking_label"
+                    android:includeFontPadding="false"
+                    android:layout_centerInParent="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="12"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/booking_desc"
+                    android:includeFontPadding="false"
+                    android:layout_below="@id/booking_label"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Booking"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+</LinearLayout>
