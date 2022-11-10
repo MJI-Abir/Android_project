@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -17,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.hotel.R;
 import com.app.hotel.adapters.HotelAdapter;
 import com.app.hotel.viewModels.Hotel;
-import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +31,6 @@ public class HotelActivity extends AppCompatActivity {
     private HotelAdapter mAdapter;
 
     private ProgressBar mProgressCircle;
-    ShimmerFrameLayout shimmerFrameLayout;
 
     FirebaseStorage mStorage;
 
@@ -53,9 +50,6 @@ public class HotelActivity extends AppCompatActivity {
 
         mStorage = FirebaseStorage.getInstance();
 
-        shimmerFrameLayout = findViewById(R.id.shimmerHotel);
-        shimmerFrameLayout.startShimmer();
-
         DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
@@ -70,25 +64,14 @@ public class HotelActivity extends AppCompatActivity {
                 mAdapter = new HotelAdapter(HotelActivity.this, mUploads);
 
                 mRecyclerView.setAdapter(mAdapter);
-
-                shimmerFrameLayout.stopShimmer();
-                shimmerFrameLayout.setVisibility(View.GONE);
-                mRecyclerView.setVisibility(View.VISIBLE);
-
-//                shimmerFrameLayout.stopShimmer();
-
-//                mProgressCircle.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(HotelActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-//                mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });
 
-        //                mProgressCircle.setVisibility(View.INVISIBLE);
-        //                mProgressCircle.setVisibility(View.INVISIBLE);
         ValueEventListener mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -106,13 +89,11 @@ public class HotelActivity extends AppCompatActivity {
 
 
 
-//                mProgressCircle.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(HotelActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-//                mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });
 

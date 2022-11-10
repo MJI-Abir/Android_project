@@ -27,8 +27,6 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewHol
     ArrayList<Hotel> hotels;
     ArrayList<Hotel> hotelsFull;
 
-//    private OnItemClickListener mListener;
-
     public HotelAdapter(Context context, ArrayList<Hotel> uploads) {
         mContext = context;
         hotels = uploads;
@@ -54,7 +52,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewHol
                 .into(holder.hotelImage);
 
         holder.itemView.setOnClickListener(v ->
-                mContext.startActivity(new Intent(mContext,HotelDetailsActivity.class)));
+                mContext.startActivity(new Intent(mContext, HotelDetailsActivity.class)));
     }
 
     @Override
@@ -71,13 +69,12 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewHol
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
             List<Hotel> filteredHotelList = new ArrayList<>();
-            if(charSequence == null || charSequence.length() == 0){
+            if (charSequence == null || charSequence.length() == 0) {
                 filteredHotelList.addAll(hotelsFull);
-            }
-            else {
+            } else {
                 String filterPattern = charSequence.toString().toLowerCase().trim();
-                for(Hotel hotel : hotelsFull){
-                    if(hotel.getName().toLowerCase().contains(filterPattern)){
+                for (Hotel hotel : hotelsFull) {
+                    if (hotel.getName().toLowerCase().contains(filterPattern)) {
                         filteredHotelList.add(hotel);
                     }
                 }
@@ -88,86 +85,29 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.HotelViewHol
             return filterResults;
         }
 
-//        @SuppressLint("NotifyDataSetChanged")
+        //        @SuppressLint("NotifyDataSetChanged")
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
 
             hotels.clear();
-            hotels.addAll((ArrayList)filterResults.values);
+            hotels.addAll((ArrayList) filterResults.values);
             notifyDataSetChanged();
 
         }
     };
 
     public class HotelViewHolder extends RecyclerView.ViewHolder {
-        public TextView hotelName, hotelLocation,hotelPrice;
+        public TextView hotelName, hotelLocation, hotelPrice;
         public ImageView hotelImage;
         public FloatingActionButton favFab;
 
         public HotelViewHolder(View itemView) {
             super(itemView);
-
             hotelName = itemView.findViewById(R.id.hotelName);
             hotelPrice = itemView.findViewById(R.id.hotelPrice);
             hotelLocation = itemView.findViewById(R.id.hotelLocation);
             hotelImage = itemView.findViewById(R.id.hotelImage);
         }
-
-
     }
 
-
-//    @Override
-//    public void onClick(View v) {
-//        if (mListener != null) {
-//            int position = getAbsoluteAdapterPosition();
-//            if (position != RecyclerView.NO_POSITION) {
-//                mListener.onItemClick(position);
-//            }
-//        }
-//    }
-//
-//    @Override
-//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-//        menu.setHeaderTitle("Select Action");
-//        MenuItem doWhatever = menu.add(Menu.NONE, 1, 1, "Do whatever");
-//        MenuItem delete = menu.add(Menu.NONE, 2, 2, "Delete");
-//
-//        doWhatever.setOnMenuItemClickListener(this);
-//        delete.setOnMenuItemClickListener(this);
-//    }
-//
-//    @Override
-//    public boolean onMenuItemClick(MenuItem item) {
-//        if (mListener != null) {
-//            int position = getAbsoluteAdapterPosition();
-//            if (position != RecyclerView.NO_POSITION) {
-//
-//                switch (item.getItemId()) {
-//                    case 1:
-//                        mListener.onWhatEverClick(position);
-//                        return true;
-//                    case 2:
-//                        mListener.onDeleteClick(position);
-//                        return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
 }
-
-//public interface OnItemClickListener {
-//    void onItemClick(int position);
-//
-//    void onWhatEverClick(int position);
-//
-//    void onDeleteClick(int position);
-//}
-//
-//    public void setOnItemClickListener(OnItemClickListener listener) {
-//        mListener = listener;
-//    }
-//}
-//}
-

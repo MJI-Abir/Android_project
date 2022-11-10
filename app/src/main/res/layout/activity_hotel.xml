@@ -1,40 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activities.HotelActivity">
 
-
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/shimmerHotel">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <include layout="@layout/hotel_shimmer" />
-            <include layout="@layout/hotel_shimmer" />
-            <include layout="@layout/hotel_shimmer" />
-            <include layout="@layout/hotel_shimmer" />
-            <include layout="@layout/hotel_shimmer" />
-            <include layout="@layout/hotel_shimmer" />
-
-        </LinearLayout>
-
-    </com.facebook.shimmer.ShimmerFrameLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="529dp"
-        android:visibility="gone" />
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

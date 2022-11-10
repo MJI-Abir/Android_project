@@ -68,7 +68,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Profile");
 
-
         FirebaseFirestore fstore = FirebaseFirestore.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
